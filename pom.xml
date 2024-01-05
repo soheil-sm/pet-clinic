@@ -9,7 +9,7 @@
     </parent>
     <groupId>org.example</groupId>
     <artifactId>pet-clinic</artifactId>
-    <version>0.0.1</version>
+    <version>0.0.2-SNAPSHOT</version>
 
     <packaging>pom</packaging>
     <name>pet-clinic</name>
@@ -48,7 +48,7 @@
 
     <scm>
         <developerConnection>scm:git:git@github.com:soheil-sm/pet-clinic.git</developerConnection>
-      <tag>pet-clinic-0.0.1</tag>
+      <tag>HEAD</tag>
   </scm>
 
 </project>
