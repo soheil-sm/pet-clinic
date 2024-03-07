@@ -1,5 +1,7 @@
 package org.example.petclinic.services;
 
-public interface VetService<Vet> extends CrudService<Vet, Long> {
+import org.example.petclinic.model.Vet;
+
+public interface VetService extends CrudService<Vet, Long> {
 
 }
