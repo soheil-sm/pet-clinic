@@ -1,12 +1,26 @@
 package org.example.petclinic.model;
 
+import jakarta.persistence.*;
+
 import java.time.LocalDate;
 
+@Entity
+@Table(name = "pet")
 public class Pet extends BaseEntity{
+
+    @Column(name = "name")
     private String name;
+
+    @ManyToOne
+    @JoinColumn(name = "type_id")
     private PetType petType;
+
+    @ManyToOne
+    @JoinColumn(name = "owner_id")
     private Owner owner;
-    private LocalDate birtDate;
+
+    @Column(name = "birth_date")
+    private LocalDate birthDate;
 
     public String getName() {
         return name;
@@ -32,11 +46,11 @@ public class Pet extends BaseEntity{
         this.owner = owner;
     }
 
-    public LocalDate getBirtDate() {
-        return birtDate;
+    public LocalDate getBirthDate() {
+        return birthDate;
     }
 
-    public void setBirtDate(LocalDate birtDate) {
-        this.birtDate = birtDate;
+    public void setBirthDate(LocalDate birtDate) {
+        this.birthDate = birtDate;
     }
 }
