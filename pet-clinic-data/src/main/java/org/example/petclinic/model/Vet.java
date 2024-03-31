@@ -1,20 +1,24 @@
 package org.example.petclinic.model;
 
-import org.springframework.stereotype.Component;
+import jakarta.persistence.*;
 
 import java.util.HashSet;
 import java.util.Set;
 
-@Component
+@Entity
+@Table(name = "vet")
 public class Vet extends Person {
 
-    private Set<Specialty> especialties = new HashSet<>();
+    @ManyToMany
+    @JoinTable(name = "vet_specialties", joinColumns = @JoinColumn(name = "vet_id"),
+            inverseJoinColumns = @JoinColumn(name = "specialty_id"))
+    private Set<Specialty> specialties = new HashSet<>();
 
     public Set<Specialty> getSpecialties() {
-        return especialties;
+        return specialties;
     }
 
-    public void setEspecialties(Set<Specialty> especialties) {
-        this.especialties = especialties;
+    public void setSpecialties(Set<Specialty> especialties) {
+        this.specialties = especialties;
     }
 }
