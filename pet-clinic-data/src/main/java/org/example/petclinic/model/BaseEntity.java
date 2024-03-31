@@ -1,7 +1,10 @@
 package org.example.petclinic.model;
 
+import jakarta.persistence.MappedSuperclass;
+
 import java.io.Serializable;
 
+@MappedSuperclass
 public class BaseEntity implements Serializable {
     private Long id;
 
