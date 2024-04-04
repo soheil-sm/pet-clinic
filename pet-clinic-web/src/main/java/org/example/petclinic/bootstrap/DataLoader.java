@@ -1,7 +1,6 @@
 package org.example.petclinic.bootstrap;
 
 import org.example.petclinic.model.*;
-import org.example.petclinic.repositories.OwnerRepository;
 import org.example.petclinic.services.*;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
