@@ -13,6 +13,6 @@ public class IndexController {
 
     @RequestMapping("/oups")
     public String findOwners() {
-        return "notimplemented";
+        return "notImplemented";
     }
 }
