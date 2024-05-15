@@ -58,18 +58,17 @@
 <table class="table table-striped">
 
     <tr th:each="pet : ${owner.pets}">
-        <td valign="top">
-            <dl class="dl-horizontal">
+        <td class="col-md-8">
+            <dl>
                 <dt>Name</dt>
-                <dd th:text="${pet.name}"></dd>
+                <dd th:text="${pet.name}">hello</dd>
                 <dt>Birth Date</dt>
-                <dd
-                        th:text="${#temporals.format(pet.birthDate, 'yyyy-MM-dd')}"></dd>
+                <dd th:text="${#temporals.format(pet.birthDate, 'yyyy-MM-dd')}">hello</dd>
                 <dt>Type</dt>
-                <dd th:text="${pet.type}"></dd>
+                <dd th:text="${pet.petType}">hello</dd>
             </dl>
         </td>
-        <td valign="top">
+        <td>
             <table class="table-condensed">
                 <thead>
                 <tr>
