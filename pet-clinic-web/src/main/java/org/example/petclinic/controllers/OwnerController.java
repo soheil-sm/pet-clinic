@@ -1,5 +1,6 @@
 package org.example.petclinic.controllers;
 
+import lombok.extern.slf4j.Slf4j;
 import org.example.petclinic.model.Owner;
 import org.example.petclinic.services.OwnerService;
 import org.springframework.stereotype.Controller;
@@ -15,6 +16,7 @@ import org.springframework.web.servlet.ModelAndView;
 import java.util.List;
 
 
+@Slf4j
 @RequestMapping("/owners")
 @Controller
 public class OwnerController {
@@ -43,8 +45,9 @@ public class OwnerController {
             owner.setLastName(""); // empty string signifies broadest possible search
 
 //        find owners by lastName
-        List<Owner> results = ownerService.findAllByLastNameLike(owner.getLastName());
+        List<Owner> results = ownerService.findAllByLastNameLike("%" + owner.getLastName() + "%");
 
+        log.debug("" + results.size());
         if (results.isEmpty()) {
 //            no owners found
             result.rejectValue("lastName", "notFound", "notFound");
