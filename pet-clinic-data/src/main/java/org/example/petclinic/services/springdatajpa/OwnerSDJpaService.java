@@ -1,13 +1,16 @@
 package org.example.petclinic.services.springdatajpa;
 
 import org.example.petclinic.model.Owner;
+import org.example.petclinic.model.Pet;
 import org.example.petclinic.repositories.OwnerRepository;
 import org.example.petclinic.services.OwnerService;
 import org.springframework.context.annotation.Profile;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.HashSet;
 import java.util.List;
+import java.util.Optional;
 import java.util.Set;
 
 @Service
@@ -31,6 +34,17 @@ public class OwnerSDJpaService implements OwnerService {
     }
 
     @Override
+    public Owner updatePet(Owner owner, Pet pet) {
+        Optional<Pet> optionalPet = owner.getPets()
+                .stream()
+                .filter(pet1 -> pet1.getId().equals(pet.getId()))
+                .findFirst();
+        optionalPet.ifPresent(value -> value.setName(pet.getName()));
+
+        return owner;
+    }
+
+    @Override
     public Set<Owner> findAll() {
         Set<Owner> owners = new HashSet<>();
         ownerRepository.findAll().forEach(owners::add);
@@ -43,6 +57,7 @@ public class OwnerSDJpaService implements OwnerService {
     }
 
     @Override
+    @Transactional
     public Owner save(Owner object) {
         return ownerRepository.save(object);
     }

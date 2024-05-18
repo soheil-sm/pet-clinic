@@ -1,6 +1,8 @@
 package org.example.petclinic.controllers;
 
 
+import jakarta.validation.Valid;
+import lombok.extern.slf4j.Slf4j;
 import org.example.petclinic.model.Owner;
 import org.example.petclinic.model.Pet;
 import org.example.petclinic.model.PetType;
@@ -14,7 +16,6 @@ import org.springframework.util.StringUtils;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.*;
-import jakarta.validation.Valid;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import java.time.LocalDate;
@@ -54,7 +55,7 @@ public class PetController {
     @GetMapping("/pets/new")
     public String initCreationForm(Owner owner, Model model) {
         Pet pet = new Pet();
-        owner.getPets().add(pet);
+            owner.getPets().add(pet);
         pet.setOwner(owner);
         model.addAttribute("pet", pet);
         return VIEWS_PETS_CREATE_OR_UPDATE_FORM;
@@ -77,7 +78,7 @@ public class PetController {
             model.addAttribute("pet", pet);
             return VIEWS_PETS_CREATE_OR_UPDATE_FORM;
         }
-
+        pet.setOwner(owner);
         Owner savedOwner = ownerService.save(owner);
         redirectAttributes.addFlashAttribute("message", "New Pet has been Added");
         return "redirect:/owners/" + savedOwner.getId();
@@ -113,8 +114,8 @@ public class PetController {
             return VIEWS_PETS_CREATE_OR_UPDATE_FORM;
         }
 
-        owner.getPets().add(pet);
-        Owner savedOwner = ownerService.save(owner);
+        Owner owner1 = ownerService.updatePet(owner, pet);
+        Owner savedOwner = ownerService.save(owner1);
         redirectAttributes.addFlashAttribute("message", "Pet details has been edited");
         return "redirect:/owners/" + savedOwner.getId();
     }

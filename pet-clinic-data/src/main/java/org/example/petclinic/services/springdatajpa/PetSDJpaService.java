@@ -1,6 +1,5 @@
 package org.example.petclinic.services.springdatajpa;
 
-import jakarta.persistence.PostRemove;
 import org.example.petclinic.model.Pet;
 import org.example.petclinic.repositories.PetRepository;
 import org.example.petclinic.services.PetService;

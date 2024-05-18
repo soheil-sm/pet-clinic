@@ -80,4 +80,9 @@ public class OwnerMapService extends AbstractMapService<Owner, Long> implements 
 //        todo -Impl
         return null;
     }
+
+    @Override
+    public Owner updatePet(Owner owner, Pet pet) {
+        return null;
+    }
 }
