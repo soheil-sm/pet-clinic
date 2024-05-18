@@ -7,6 +7,8 @@
     <th:block th:if="${pet['new']}">New </th:block>
     Pet
   </h2>
+  <!--/*@thymesVar id="pet" type="org.example.petclinic.model.Pet"*/-->
+  <!--/*@thymesVar id="owner" type="org.example.petclinic.model.Owner*/-->
   <form th:object="${pet}" class="form-horizontal" method="post">
     <input type="hidden" name="id" th:value="*{id}" />
     <div class="form-group has-feedback">
@@ -27,7 +29,7 @@
       <div class="col-sm-offset-2 col-sm-10">
         <button
           th:with="text=${pet['new']} ? 'Add Pet' : 'Update Pet'"
-          class="btn btn-default" type="submit" th:text="${text}">Add
+          class="btn btn-success" type="submit" th:text="${text}">Add
           Pet</button>
       </div>
     </div>
