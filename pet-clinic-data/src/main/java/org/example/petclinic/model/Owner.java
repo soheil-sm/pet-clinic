@@ -3,6 +3,7 @@ package org.example.petclinic.model;
 import jakarta.persistence.*;
 import lombok.*;
 import lombok.experimental.SuperBuilder;
+import lombok.extern.slf4j.Slf4j;
 
 import java.util.HashSet;
 import java.util.Set;
@@ -14,6 +15,7 @@ import java.util.Set;
 @SuperBuilder()
 @Entity
 @Table(name = "owner")
+@Slf4j
 public class Owner extends Person {
 
     @Column(name = "address")
@@ -46,8 +48,11 @@ public class Owner extends Person {
      */
     public Pet getPet(String name, boolean ignoreNew) {
         name = name.toLowerCase();
-        for (Pet pet : pets) {
+        log.debug(String.valueOf(this.pets.size()));
+        log.debug(name);
+        for (Pet pet : this.pets) {
             if (!ignoreNew || !pet.isNew()) {
+                log.debug(pet.getName());
                 String compName = pet.getName();
                 compName = compName.toLowerCase();
                 if (compName.equals(name)) {
@@ -57,6 +62,19 @@ public class Owner extends Person {
         }
         return null;
     }
+
+    public Pet getPet(Long id) {
+        for (Pet pet : getPets()) {
+            if (!pet.isNew()) {
+                Long compId = pet.getId();
+                if (compId.equals(id)) {
+                    return pet;
+                }
+            }
+        }
+        return null;
+    }
+
 
     @Override
     public String toString() {
